@@ -3,6 +3,18 @@ ID: david.y3
 LANG: C++
 TASK: castle
 */
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   13 March 2022
+// PROBLEM ID           :   castle
+// PROBLEM DESCRIPTION  :   Determine largest room that can be created by removing
+//                          a wall in the castle, print wall and max room size
+//                          Floodfill, binary nums
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -21,6 +33,7 @@ void debug(int i, int j)
     std::cerr << (encodedWalls[i][j] & SOUTH) << '\n';
     std::cerr << (encodedWalls[i][j] & WEST) << '\n';
 }
+// For debugging
 void printLayout()
 {
     for (int i = 0; i < n; i++)
@@ -50,6 +63,7 @@ bool hasHigherPriority(char a, char b)
 { // returns true if a has higher priority than b
     return (a == 'N') > (b == 'N');
 }
+// Floodfill, gets sizes of rooms
 void fillIn(int x, int y, int val)
 {
     if (x < 0 || y < 0 || x > n || y > m || roomSize[x][y] == val)
@@ -65,6 +79,7 @@ void fillIn(int x, int y, int val)
     if (!(encodedWalls[x][y] & WEST))
         fillIn(x, y - 1, val);
 }
+// Floodfill, 
 int getRoomSize(int x, int y, int comp, int reached = 0)
 {
     if (x < 0 || y < 0 || x > n || y > m || visited[x][y])
@@ -72,7 +87,9 @@ int getRoomSize(int x, int y, int comp, int reached = 0)
     // std::cerr << "Visited: " << x << ' ' << y << " Reached: " << reached << " Component: " << comp << '\n';
     visited[x][y] = true;
     comps[x][y] = comp;
+
     reached++;
+
     if (!(encodedWalls[x][y] & NORTH))
         reached = getRoomSize(x - 1, y, comp, reached);
     if (!(encodedWalls[x][y] & EAST))
@@ -81,7 +98,7 @@ int getRoomSize(int x, int y, int comp, int reached = 0)
         reached = getRoomSize(x + 1, y, comp, reached);
     if (!(encodedWalls[x][y] & WEST))
         reached = getRoomSize(x, y - 1, comp, reached);
-    // roomSize[x][y] = reached;
+
     fillIn(x, y, reached);
     return reached;
 }
@@ -98,7 +115,9 @@ int main()
             fin >> encodedWalls[i][j];
         }
     }
+
     int numRooms = 0, maxRoom = 0;
+    // Fill components, find largest
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
@@ -113,6 +132,8 @@ int main()
     }
     std::pair<std::pair<int, int>, char> wallToRemove = {{m, 0}, 'N'};
     int maxRoomWithoutAWall = -1;
+    // Test breaking down each wall and compute room size, store maximum along with
+    // which wall
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)

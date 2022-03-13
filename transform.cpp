@@ -3,11 +3,23 @@ ID: david.y3
 LANG: C++
 TASK: transform
 */
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   transform
+// PROBLEM DESCRIPTION  :   Determine how grid was transformed
+//                          Checks all possibilities
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <iostream>
 
 int n;
 std::string original, changed;
+
 std::string reflect(std::string pattern)
 {
     std::string transformed = pattern;
@@ -28,7 +40,7 @@ std::string rotate90(std::string pattern)
     {
         for (int j = i; j < n; j++)
         {
-            transformed[i * n + j] = pattern[j * n + i]; // Issue
+            transformed[i * n + j] = pattern[j * n + i];
             transformed[j * n + i] = pattern[i * n + j];
         }
     }
@@ -47,18 +59,24 @@ int main()
 {
     std::ifstream fin("transform.in");
     std::string line;
+    
     fin >> n;
+
     for (int i = 0; i < n; i++)
     {
         fin >> line;
         original += line;
     }
+
     for (int i = 0; i < n; i++)
     {
         fin >> line;
         changed += line;
     }
+
     std::ofstream fout("transform.out");
+
+    // Check cases
     if (changed == rotate90(original))
         fout << "1\n";
     else if (changed == rotate180(original))

@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: agrinet
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   13 March 2022
+// PROBLEM ID           :   arginet
+// PROBLEM DESCRIPTION  :   Given dists, find way to connect all with minimum dist covered
+//                          Kruskal's algo
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <queue>
 
@@ -22,6 +32,7 @@ int main()
         }
     }
 
+    // Kruskal's algo
     std::priority_queue<std::pair<int, int>> q;
 
     q.push({0, 0});

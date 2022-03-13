@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: numtri
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   numtri
+// PROBLEM DESCRIPTION  :   Find max sum when traversing number triangle
+//                          Little bit of dynamic programming!
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 
 int maxSum[1000][1000];

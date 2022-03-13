@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: holstein
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   holstein
+// PROBLEM DESCRIPTION  :   Determine which feeds cow should eat given requirements
+//                          Complete search
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -18,13 +28,13 @@ int v, g, vitaminAmount;
 
 void addFeed(int feedNum)
 {
-
     auto feed = allFeeds.at(feedNum);
     for (int i = 0; i < v; i++)
     {
         currentVitamins.at(i) += feed.at(i);
     }
 }
+
 void removeFeed(int feedNum)
 {
     auto feed = allFeeds.at(feedNum);
@@ -33,6 +43,7 @@ void removeFeed(int feedNum)
         currentVitamins.at(i) -= feed.at(i);
     }
 }
+
 bool minVitaminsMet(std::vector<int> currentVitamins)
 {
     for (int i = 0; i < v; i++)
@@ -42,6 +53,7 @@ bool minVitaminsMet(std::vector<int> currentVitamins)
     }
     return true;
 }
+
 void tryFeeds(int feed)
 {
     // if (tested[feed]) return;
@@ -58,20 +70,26 @@ void tryFeeds(int feed)
     {
         tryFeeds(f);
     }
+
     feedsUsed.pop_back();
     removeFeed(feed);
 }
+
 int main()
 {
     std::ifstream fin("holstein.in");
+
     fin >> v;
+    
     for (int i = 0; i < v; i++)
     {
         fin >> vitaminAmount;
         minVitamins.push_back(vitaminAmount);
         currentVitamins.push_back(0);
     }
+
     fin >> g;
+    
     for (int i = 0; i < g; i++)
     {
         allFeeds.push_back({});
@@ -81,17 +99,22 @@ int main()
             allFeeds.at(i).push_back(vitaminAmount);
         }
     }
+
     for (int i = 0; i < g; i++)
         tryFeeds(i);
+
     std::sort(solution.begin(), solution.end());
 
     std::ofstream fout("holstein.out");
+
     fout << solution.size() << ' ';
+
     for (int i = 0; i < solution.size(); i++)
     {
         fout << solution.at(i) + 1;
         if (i < solution.size() - 1)
             fout << ' ';
     }
+
     fout << '\n';
 }

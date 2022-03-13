@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: comehome
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   comehome
+// PROBLEM DESCRIPTION  :   Determine closest cow to barn
+//                          BFS
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <queue>
 #include <unordered_set>
@@ -35,6 +45,8 @@ int main()
         distance[b - 'A'][a - 'A'] = distance[a - 'A'][b - 'A'] = std::min(distance[a - 'A'][b - 'A'], c);
     }
 
+    // BFS Algorithm
+    // Calculate all shortest distances from Z
     std::queue<std::pair<int, int>> toCalculate;
     toCalculate.push({'Z' - 'A', 0});
 
@@ -62,6 +74,7 @@ int main()
         }
     }
 
+    // Find minimum distance
     int minDist = INFINITY;
     char closestPasture = '?';
     for (int x : pasturesToConsider)

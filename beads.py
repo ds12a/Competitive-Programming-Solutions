@@ -3,6 +3,16 @@ ID: david.y3
 LANG: PYTHON3
 TASK: beads
 """
+"""
+NAME                 :   David Shen
+GROUP                :   
+LAST MODIFIED        :   12 March 2022
+PROBLEM ID           :   beads
+PROBLEM DESCRIPTION  :   Brute force all possible places to break necklace
+SOURCES              :   USACO Website
+PEOPLE WHO HELPED ME :   
+PEOPLE I HELPED      :   
+"""
 
 with open('beads.in', 'r') as file:
     data = file.readlines()
@@ -27,6 +37,7 @@ for index in range(num_beads):
     right = beads[index:]
 
     i = index
+
     while True:
         bead = beads[i % num_beads]
 
@@ -60,7 +71,6 @@ for index in range(num_beads):
             sample = ""
             break
     current = 0
-print(longest)
-print(ls)
+
 with open('beads.out', 'w') as file:
     file.write(f"{len(ls)}\n")

@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: milk3
 */
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   milk3
+// PROBLEM DESCRIPTION  :   Print possible amount of milk of bucket C when A is empty
+//                          DFS Algo
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -36,7 +46,9 @@ int main()
     fin >> maxA >> maxB >> maxC;
     // std::cerr << maxA << ' ' << maxB << ' ' << maxC << '\n';
     pourBuckets();
+
     std::sort(possibleCVals.begin(), possibleCVals.end());
+
     std::ofstream fout("milk3.out");
     for (int i = 0; i < possibleCVals.size(); i++)
     {

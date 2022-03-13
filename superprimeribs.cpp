@@ -3,6 +3,17 @@ ID: david.y3
 LANG: C++
 TASK: sprime
 */
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   sprime
+// PROBLEM DESCRIPTION  :   Prints all "superprime ribs" of length n
+//                          Complete Search
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <iostream>
 
@@ -18,6 +29,7 @@ bool isPrime(int num)
     return true;
 }
 
+// Complete search
 void printSuperprimeRibs(int n, std::ofstream &fout, int accumulated = 0)
 {
     if (!isPrime(accumulated))
@@ -39,5 +51,6 @@ int main()
     std::ofstream fout("sprime.out");
     int n;
     fin >> n;
+
     printSuperprimeRibs(n, fout);
 }

@@ -3,13 +3,22 @@ ID: david.y3
 LANG: C++
 TASK: inflate
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   13 March 2022
+// PROBLEM ID           :   inflate
+// PROBLEM DESCRIPTION  :   Maximize points earnable within given time
+//                          Dynamic programming over max points in time, time as index
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
 
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <vector>
 
-int maxPointsWithinTime[10001]{0};
+int maxPointsWithinTime[10001];
 
 int main()
 {
@@ -34,8 +43,7 @@ int main()
         {
             if (t - problemInfo[i].second >= 0)
             {
-                maxPointsWithinTime[t] = std::max(
-                    maxPointsWithinTime[t], maxPointsWithinTime[t - problemInfo[i].second] + problemInfo[i].first);
+                maxPointsWithinTime[t] = std::max(maxPointsWithinTime[t], maxPointsWithinTime[t - problemInfo[i].second] + problemInfo[i].first);
             }
         }
     }

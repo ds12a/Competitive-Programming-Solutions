@@ -3,6 +3,17 @@ ID: david.y3
 LANG: C++
 TASK: dualpal
 */
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   dualpal
+// PROBLEM DESCRIPTION  :   Print bases num is palindrome
+//                          Brute force once again!
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -53,7 +64,9 @@ int main()
 {
     std::ifstream fin("dualpal.in");
     fin >> n >> s;
+
     std::ofstream fout("dualpal.out");
+
     int numPrinted = 0;
     for (int i = s + 1; numPrinted < n; i++)
     {

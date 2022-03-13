@@ -4,6 +4,16 @@ LANG: C++
 TASK: wormhole
 */
 
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   wormhole
+// PROBLEM DESCRIPTION  :   Determine how many states can lead to infinite loops
+//                          Complete search
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -32,19 +42,21 @@ bool hasCycle()
     int start;
     for (int i = 0; i < n; i++)
     {
-        // explore start from `i`
+        // start from i
         start = i;
 
-        // let's explore with minimum N steps
-        // we can be sure that after N steps, it will restarts over again creating cycle
+        // run for n steps
         for (int c = 0; c < n; c++)
         {
             start = getRight(nextWormhole[start]);
-            // -1 = that's mean the cow doesn't found any wormhole and stepping out of bound
-            // return false as there's no cycle
+
             if (start == -1)
+            {
+                // No wormhole to go to, no cycle, return false
                 break;
+            }
         }
+        // after n steps and start still is wormhole, there is cycle!
         if (start != -1)
             return true;
     }
@@ -63,6 +75,7 @@ void solve()
     // if all point already paired
     if (i == n)
     {
+        // Test if infinite cycle exists
         if (hasCycle() == true)
             solutions++;
         return;
@@ -73,11 +86,11 @@ void solve()
         // if not paired yet, then pair it
         if (nextWormhole[i] == -1 && nextWormhole[j] == -1)
         {
-            // pair the two points together
+            // pair the two together
             nextWormhole[i] = j, nextWormhole[j] = i;
-            // go down the tree and generate all left pairs
+            // generate remaining pairs
             solve();
-            // reset for other pair with `i`
+            // reset
             nextWormhole[i] = nextWormhole[j] = -1;
         }
     }
@@ -90,12 +103,16 @@ int main()
     for (int i = 0; i < n; i++)
     {
         fin >> a >> b;
+
         wormholes.insert({b, a});
         toWormhole.push_back({b, a});
+        
         toInt[{b, a}] = i;
         nextWormhole[i] = -1;
     }
+    // I HATE WRITING SOLVE FUNCTIONS BUT I HAVE TO
     solve();
+
     std::ofstream fout("wormhole.out");
     fout << solutions << '\n';
 }

@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: lamps
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   lamps
+// PROBLEM DESCRIPTION  :   Determine ending states that satisfy requirements
+//                          Simulation, binary nums to indentify subsets
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <set>
 #include <vector>
@@ -42,11 +52,13 @@ void pressButton4(std::vector<bool> &lamps)
 std::set<std::vector<bool>> getPotentialStates()
 {
     std::set<std::vector<bool>> states;
+
     for (int i = 0; i < 16; i++)
-    { // 16 = 1 << 4
+    {
         int lampsOn = __builtin_popcount(i);
         if (lampsOn > c || ((c - lampsOn) % 2 != 0 && (c - lampsOn) % 3 != 0))
             continue;
+
         std::vector<bool> state(n, true);
         for (int j = 0; j < 4; j++)
         {

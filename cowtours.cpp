@@ -3,6 +3,18 @@ ID: david.y3
 LANG: C++
 TASK: cowtour
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   cowtour
+// PROBLEM DESCRIPTION  :   Determine smallest diameter of graph composed of 2 graphs
+//                          Floyd-Warshaw while computing farthest points, then compute
+//                          minumum sum of two distances
+//                          Simulation
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <cmath>
 #include <fstream>
 #include <iomanip>

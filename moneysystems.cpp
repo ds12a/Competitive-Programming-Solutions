@@ -3,14 +3,26 @@ ID: david.y3
 LANG: C++
 TASK: money
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   money
+// PROBLEM DESCRIPTION  :   Classic money system DP problem
+//                          Dynamic Programming
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <vector>
+
+long long waysToConstructValue[10001];
 
 int main()
 {
     std::ifstream fin("money.in");
     int v, n, c;
-    long long waysToConstructValue[10001]{0};
+    
 
     fin >> v >> n;
 

@@ -3,6 +3,19 @@ ID: david.y3
 LANG: C++
 TASK: ttwo
 */
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   13 March 2022
+// PROBLEM ID           :   ttwo
+// PROBLEM DESCRIPTION  :   Determine how long it will take for farmer and cow to meet
+//                          or print zero if they do not meet
+//                          Simulation until original state is reached or they meet
+//                          Note: classes were probably overkill but I couldn't resist
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <iostream>
 #include <set>
@@ -93,8 +106,8 @@ bool farmerVisited[10][10], cowsVisited[10][10];
 
 std::set<std::pair<std::pair<std::pair<int, int>, Direction>, std::pair<std::pair<int, int>, Direction>>> states;
 
-std::pair<std::pair<std::pair<int, int>, Direction>, std::pair<std::pair<int, int>, Direction>> getState(GridWalker f,
-                                                                                                         GridWalker c)
+// Get state of current configuration
+std::pair<std::pair<std::pair<int, int>, Direction>, std::pair<std::pair<int, int>, Direction>> getState (GridWalker f, GridWalker c)
 {
     return {{{f.x, f.y}, f.dir}, {{c.x, c.y}, c.dir}};
 }
@@ -120,11 +133,13 @@ int main()
             }
         }
     }
+
     GridWalker farmer(farmerX, farmerY), cows(cowsX, cowsY);
     int timeUsed = 0;
     bool meet = false;
-    std::pair<std::pair<std::pair<int, int>, Direction>, std::pair<std::pair<int, int>, Direction>> current =
-        getState(farmer, cows);
+    std::pair<std::pair<std::pair<int, int>, Direction>, std::pair<std::pair<int, int>, Direction>> current = getState(farmer, cows);
+
+    // Simulate untill they meet
     do
     {
         states.insert(current);

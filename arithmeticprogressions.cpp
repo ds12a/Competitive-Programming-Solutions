@@ -3,12 +3,23 @@ ID: david.y3
 LANG: C++
 TASK: ariprog
 */
+// NAME                 :   David Shen
+// GROUP                :   
+// LAST MODIFIED        :   11 March 2022
+// PROBLEM ID           :   ariprog
+// PROBLEM DESCRIPTION  :   Print bisquare sequences given length and upper bound
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :   
+// PEOPLE I HELPED      :   
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <set>
 #include <string>
 #include <vector>
+
+int distToNext[125001];
 
 int main()
 {
@@ -17,8 +28,7 @@ int main()
 
     int n, m;
     fin >> n >> m;
-
-    int map[125001] = {0};
+    
     std::set<int> collection;
 
     for (int p = 0; p <= m; ++p)
@@ -29,57 +39,60 @@ int main()
         }
     }
 
-    // generate delta
+    // calculate differences to put in distToNext
     int last = 0;
     for (int element : collection)
     {
-        map[last] = element - last;
+        distToNext[last] = element - last;
         last = element;
     }
-    map[0] = 1;
-    map[last] = 1;
+
+    distToNext[0] = 1;
+    distToNext[last] = 1;
 
     // iterate b and a
-    int size_max = m * m * 2;
-    std::vector<std::pair<int, int>> ret;
+    int sizeMax = m * m * 2;
+    std::vector<std::pair<int, int>> answers;
 
+    // Brute force search
     for (int a : collection)
     {
-        // a + b * (n - 1) <= size_max
-        // b <= (size_max - a) / (n - 1)
-        for (int b = map[a], sz = (size_max - a) / (n - 1) + 1; b <= sz; ++b)
+        int maxB = (sizeMax - a) / (n - 1) + 1;
+        
+        for (int b = distToNext[a]; b <= maxB; b++)
         {
             int cur = a;
-            bool flag = false;
+            bool works = true;
+
             // check all elements
             for (int i = 1; i < n; ++i)
             {
                 cur += b;
-                if (map[cur] == 0)
+                if (distToNext[cur] == 0)
                 {
-                    flag = true;
+                    // Curr is not bisquare!
+                    works = false;
                     break;
                 }
             }
-            if (!flag)
+            if (works)
             {
-                ret.push_back({b, a});
+                answers.push_back({b, a});
             }
         }
     }
 
-    if (ret.size() == 0)
+    if (answers.size() == 0)
     {
         fout << "NONE\n";
     }
     else
     {
-        std::sort(ret.begin(), ret.end());
-        for (auto &r : ret)
+        std::sort(answers.begin(), answers.end());
+
+        for (auto ans : answers)
         {
-            fout << r.second << " " << r.first << '\n';
+            fout << ans.second << ' ' << ans.first << '\n';
         }
     }
-
-    return 0;
 }

@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: palsquare
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   palsquare
+// PROBLEM DESCRIPTION  :   Find palindromic squares given bounds
+//                          Complete search again! Not feeling this is very elegant...
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -10,6 +20,8 @@ TASK: palsquare
 
 int b;
 
+// Wrote own pow function
+// std::pow was weird
 int pow(int x, int y)
 {
     int answer = 1;
@@ -54,6 +66,7 @@ int main()
     std::ifstream fin("palsquare.in");
     fin >> b;
     std::ofstream fout("palsquare.out");
+
     for (int i = 1; i <= 300; i++)
     {
         std::string baseB = toBaseB(std::to_string(i * i));

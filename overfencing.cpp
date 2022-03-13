@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: maze1
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   maze1
+// PROBLEM DESCRIPTION  :   Determine longest best path to escape maze 
+//                          Floodfill, binary nums
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <iostream>
 #include <set>

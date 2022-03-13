@@ -3,6 +3,17 @@ ID: david.y3
 LANG: C++
 TASK: crypt1
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   crypt1
+// PROBLEM DESCRIPTION  :   Compute number of cryparithms with only allowed digits given    
+//                          bounds
+//                          Complete search
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <fstream>
 #include <iostream>
 #include <unordered_set>
@@ -33,11 +44,13 @@ int main()
 {
     std::ifstream fin("crypt1.in");
     fin >> n;
+
     for (int i = 0; i < n; i++)
     {
         fin >> x;
         allowedDigits.insert(x);
     }
+    
     long long solutions = 0;
     for (int a : allowedDigits)
     {
@@ -52,6 +65,7 @@ int main()
                         int top = 100 * a + 10 * b + c;
                         int bottom = 10 * x + y;
                         // std::cerr << top << ' ' << bottom << '\n';
+                        // Has requiered num of digits?
                         if ((top * (bottom / 10)) / 100 > 10 || (top * (bottom % 10)) / 100 > 10)
                         {
                             // Too big!

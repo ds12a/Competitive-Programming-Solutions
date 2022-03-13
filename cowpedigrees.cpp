@@ -3,9 +3,20 @@ ID: david.y3
 LANG: C++
 TASK: nocows
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   nocows
+// PROBLEM DESCRIPTION  :   Determine number of binary trees of height k, n nodes mod 9901
+//                          Dynamic Programming
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <cmath>
 #include <fstream>
 #include <iostream>
+
 const int MOD = 9901;
 int pedigrees[200][100]; // num cows, height
 
@@ -13,7 +24,9 @@ int main()
 {
     std::ifstream fin("nocows.in");
     int n, k;
+
     fin >> n >> k;
+
     for (int i = 1; i <= n; i++)
     {
         for (int j = 1; j <= k; j++)

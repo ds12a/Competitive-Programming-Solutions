@@ -3,11 +3,22 @@ ID: david.y3
 LANG: C++
 TASK: combo
 */
-#include <math.h>
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   combo
+// PROBLEM DESCRIPTION  :   Print combonations that open lock given master
+//                          Use counting
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+#include <cmath>
 
 #include <fstream>
 #include <iostream>
 #include <unordered_set>
+
 int n, a;
 
 int keepInDial(int x)
@@ -19,10 +30,12 @@ int keepInDial(int x)
     else
         return x;
 }
+
 bool within2(int x, int y)
 {
     return std::abs(x - y) <= 2 || std::abs(x - y) >= (n - 2);
 }
+
 int getOverlap(int x, int y)
 {
     std::unordered_set<int> withinBoth;
@@ -48,8 +61,11 @@ int getNumWithin2(int x)
 int main()
 {
     std::ifstream fin("combo.in");
+
     int farmer[3], master[3];
+
     fin >> n;
+
     for (int i = 0; i < 3; i++)
     {
         fin >> farmer[i];
@@ -58,11 +74,14 @@ int main()
     {
         fin >> master[i];
     }
+
+    // Multiply possiblities to get total
     long long totalCombos =
         getNumWithin2(farmer[0]) * getNumWithin2(farmer[1]) * getNumWithin2(farmer[2]) +
         getNumWithin2(master[0]) * getNumWithin2(master[1]) * getNumWithin2(master[2]) -
         getOverlap(farmer[0], master[0]) * getOverlap(farmer[1], master[1]) * getOverlap(farmer[2], master[2]);
 
     std::ofstream fout("combo.out");
+    
     fout << totalCombos << '\n';
 }

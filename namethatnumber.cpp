@@ -3,6 +3,17 @@ ID: david.y3
 LANG: C++
 TASK: namenum
 */
+
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   namenum
+// PROBLEM DESCRIPTION  :   Find names that match numerical id
+//                          Complete Search, then find valid
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -33,6 +44,7 @@ void generateNames(int charNum, std::string accumulated = "")
         generateNames(charNum + 1, accumulated + c);
     }
 }
+
 int main()
 {
     std::ios_base::sync_with_stdio(false);
@@ -46,14 +58,19 @@ int main()
         validNames.insert(name);
     }
     nameFile.close();
+
     fin >> id;
     for (char c : id)
     {
         charChoices.push_back(touchTone[c - '0']);
     }
+
     generateNames(0);
+
     std::ofstream fout("namenum.out");
+
     std::sort(workingNames.begin(), workingNames.end());
+
     for (std::string name : workingNames)
         fout << name << '\n';
     if (workingNames.empty())

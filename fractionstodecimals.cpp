@@ -3,6 +3,15 @@ ID: david.y3
 LANG: C++
 TASK: fracdec
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   fracdec
+// PROBLEM DESCRIPTION  :   Print concise version of decimal form of fraction
+//                          Simulation
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
 
 #include <cmath>
 #include <fstream>
@@ -13,6 +22,7 @@ TASK: fracdec
 std::queue<int> digits;
 std::unordered_map<int, int> startingLoc;
 
+// Simulate division
 int calculateDecimal(int a, int b)
 {
     int r = a % b;

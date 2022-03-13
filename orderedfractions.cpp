@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: frac1
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   frac1
+// PROBLEM DESCRIPTION  :   Print sorted unique fractions given max numerator & denominator 
+//                          Complete search, gcd, custom cmp function for sorting
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -24,8 +34,11 @@ int main()
 {
     std::ifstream fin("frac1.in");
     int n;
+
     fin >> n;
+
     std::vector<std::pair<int, int>> fractions;
+
     for (int i = 0; i <= n; i++)
     {
         for (int j = i; j <= n; j++)
@@ -36,8 +49,9 @@ int main()
         }
     }
     std::sort(fractions.begin(), fractions.end(), [](const std::pair<int, int> &a, const std::pair<int, int> &b) {
-        return ((double)a.first) / a.second < ((double)b.first) / b.second;
+        return ((double) a.first) / a.second < ((double) b.first) / b.second;
     });
+
     std::ofstream fout("frac1.out");
     for (std::pair<int, int> fraction : fractions)
     {

@@ -3,7 +3,17 @@ ID: david.y3
 LANG: PYTHON3
 TASK: friday
 """
-
+"""
+// NAME                 :   David Shen
+// GROUP                :   
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   friday
+// PROBLEM DESCRIPTION  :   Find num of days who's date is 13 per day in the week
+                            Complete search
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :   
+// PEOPLE I HELPED      :   
+"""
 
 def is_leap(year):
     if year % 4 == 0:

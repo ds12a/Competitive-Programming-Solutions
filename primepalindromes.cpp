@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: pprime
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   12 March 2022
+// PROBLEM ID           :   pprime
+// PROBLEM DESCRIPTION  :   Print prim palindromes between a and b
+//                          Generate palindromes, test if prime
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
+
 #include <algorithm>
 #include <cmath>
 #include <fstream>
@@ -44,15 +54,20 @@ int main()
     std::ifstream fin("pprime.in");
     int a, b;
     std::set<int> primes, primePalindromes;
+
     fin >> a >> b;
+    
     int maxDigits = getNumDigits(b), minDigits = getNumDigits(a);
+
     for (int numDigits = minDigits; numDigits <= maxDigits; numDigits++)
     {
         int digitsToChange = numDigits / 2 + (numDigits % 2);
         int number = std::pow(10, digitsToChange - 1);
+
         while (getNumDigits(number) == digitsToChange)
         {
             int palindrome = makePalindrome(number, numDigits % 2 == 1);
+
             if (palindrome > b)
                 break;
             if (palindrome < a)
