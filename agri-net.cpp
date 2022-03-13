@@ -8,7 +8,7 @@ TASK: agrinet
 // LAST MODIFIED        :   13 March 2022
 // PROBLEM ID           :   arginet
 // PROBLEM DESCRIPTION  :   Given dists, find way to connect all with minimum dist covered
-//                          Kruskal's algo
+//                          Prim's algo
 // SOURCES              :   USACO Website
 // PEOPLE WHO HELPED ME :
 // PEOPLE I HELPED      :
@@ -32,7 +32,7 @@ int main()
         }
     }
 
-    // Kruskal's algo
+    // Prim's algo
     std::priority_queue<std::pair<int, int>> q;
 
     q.push({0, 0});
