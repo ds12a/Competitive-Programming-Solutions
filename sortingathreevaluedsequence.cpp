@@ -17,7 +17,6 @@ LANG: C++
 #include <iostream>
 
 int queue[1000];
-int queue2[1000];
 int a, b;
 
 // First letter = 'owner', second letter = 'taker'
