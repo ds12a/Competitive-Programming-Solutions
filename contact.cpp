@@ -3,6 +3,16 @@ ID: david.y3
 LANG: C++
 TASK: contact
 */
+// NAME                 :   David Shen
+// GROUP                :
+// LAST MODIFIED        :   19 March 2022
+// PROBLEM ID           :   contact
+// PROBLEM DESCRIPTION  :   Determine patterns in a string, print most frequent
+//                          along with frequency
+//                          Sliding-window, binary nums
+// SOURCES              :   USACO Website
+// PEOPLE WHO HELPED ME :
+// PEOPLE I HELPED      :
 
 #include <fstream>
 #include <iostream>
@@ -10,9 +20,9 @@ TASK: contact
 #include <vector>
 #include <algorithm>
 
-void setNthBit(long long &bits, bool isOne, int n)
+void setNthBit(int &bits, bool isOne, int n)
 {
-    long long bit = 1 << n;
+    int bit = 1 << n;
 
     if (bits & bit)
     {
@@ -30,16 +40,33 @@ void setNthBit(long long &bits, bool isOne, int n)
     }
 }
 
+int reverseBinaryDigits(int binary)
+{
+    int rev = 0;
+
+    while (binary > 0)
+    {
+        rev <<= 1;
+        rev += binary & 1;
+        binary >>= 1;
+    }
+    return rev;
+}
 int main()
 {
     std::ifstream fin("contact.in");
 
     int a, b, n;
-    std::string emission = "";
+    std::string emission = "", line;
 
-    fin >> a >> b >> n >> emission;
+    fin >> a >> b >> n;
 
-    long long bitWindow = 0;
+    while (std::getline(fin, line))
+    {
+        emission += line;
+    }
+
+    int bitWindow = 0;
     int leadingZeros = 0;
 
     for (int i = 0; i < a; i++)
@@ -54,15 +81,20 @@ int main()
     }
 
     // Pattern, leadingZeros, digits, frequency
-    std::map<std::pair<std::pair<long long, int>, int>, int> patternCount;
+    std::map<std::pair<std::pair<int, int>, int>, int> patternCount;
 
     for (int start = 0; start < emission.size(); start++)
     {
         int prevLeadingZeros = leadingZeros;
-        
+
+        if (bitWindow == 0)
+        {
+            leadingZeros--;
+        }
+
         for (int length = a; length <= b; length++)
         {
-            if (start + length - 1 > emission.size())
+            if (start + length - 1 >= emission.size())
             {
                 break;
             }
@@ -81,35 +113,38 @@ int main()
             }
 
             patternCount[{{bitWindow, leadingZeros}, length}]++;
-            
-            std::cout << bitWindow << '\n';
-            std::cout << start << ' ' << start + length - 1 << '\n';
-            std::cout << "ZEROS: " << leadingZeros << '\n';
         }
 
         // Look at bit that will enter window
         // Determine how it will change the number of leading zeros
-        if (start + a < emission.size() && emission[start + a] == 0)
+        if (start + a - 1 < emission.size() && emission[start + a - 1] == '0')
         {
             prevLeadingZeros++;
         }
-        else if (start + a < emission.size() && emission[start + a] == 1)
+        else if (start + a - 1 < emission.size() && emission[start + a - 1] == '1')
         {
             prevLeadingZeros = 0;
         }
 
-        leadingZeros = prevLeadingZeros;
-        
         // Leave only last a bits
-        long long mask = (1 << (a)) - 1;
+        int mask = (1 << a) - 1;
 
         bitWindow &= mask;
+
+        // If a leading zero is about to exit window
+        if (bitWindow == 0)
+        {
+            prevLeadingZeros--;
+        }
+
+        leadingZeros = prevLeadingZeros;
+        
         bitWindow >>= 1;
     }
 
     // Frequency, {{pattern, leadingZeros}, length}
     // Sorted in decreasing order
-    std::map<int, std::vector<std::pair<std::pair<long long, int>, int>>, std::greater<int>> getPatternsByFreq;
+    std::map<int, std::vector<std::pair<std::pair<int, int>, int>>, std::greater<int>> getPatternsByFreq;
 
     // move frequencies and patterns into map with frequencies as key
     for (auto pattern : patternCount)
@@ -118,10 +153,10 @@ int main()
     }
 
     // Sort by length and binary
-    auto cmp = [](std::pair<std::pair<long long, int>, int> a, std::pair<std::pair<long long, int>, int> b) {
+    auto cmp = [](std::pair<std::pair<int, int>, int> a, std::pair<std::pair<int, int>, int> b) {
         if (a.second == b.second)
         {
-            return (a.first.first << (a.first.second - 1)) < (b.first.first << (b.first.second - 1));
+            return (reverseBinaryDigits(a.first.first) << a.first.second) < (reverseBinaryDigits(b.first.first) << b.first.second);
         }
         if (a.second < b.second) return true;
         
@@ -147,21 +182,20 @@ int main()
 
         int patsPrinted = 0;
 
-        for (std::pair<std::pair<long long, int>, int> p : pats.second)
+        for (std::pair<std::pair<int, int>, int> p : pats.second)
         {
             // Print binary of p.first.first
-            long long bitChecker = 1;
-            
-            while (bitChecker <= p.first.first)
+            if (p.first.first == 0) fout << 0;
+            while (p.first.first > 0)
             {
-                if (bitChecker & p.first.first)
+                if (p.first.first & 1)
                 {
                     fout << '1';
                 }
                 else
                     fout << '0';
 
-                bitChecker <<= 1;
+                p.first.first >>= 1;
             }
 
             // Print leadingZeros (now they are trailing zeros)
