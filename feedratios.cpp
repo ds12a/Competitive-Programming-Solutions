@@ -16,7 +16,6 @@ TASK: ratios
 #include <array>
 #include <fstream>
 #include <iostream>
-#include <stack>
 #include <vector>
 #include <map>
 
