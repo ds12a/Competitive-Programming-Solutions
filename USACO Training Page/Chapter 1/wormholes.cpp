@@ -42,10 +42,8 @@ bool hasCycle()
     int start;
     for (int i = 0; i < n; i++)
     {
-        // start from i
         start = i;
 
-        // run for n steps
         for (int c = 0; c < n; c++)
         {
             start = getRight(nextWormhole[start]);
@@ -66,7 +64,7 @@ bool hasCycle()
 
 void solve()
 {
-    // find last point who's not paired yet
+    // find last point that's not paired yet
     int i;
     for (i = 0; i < n; i++)
         if (nextWormhole[i] == -1)
@@ -75,7 +73,7 @@ void solve()
     // if all point already paired
     if (i == n)
     {
-        // Test if infinite cycle exists
+        // Test if cycle exists
         if (hasCycle() == true)
             solutions++;
         return;

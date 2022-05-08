@@ -5,10 +5,10 @@ LANG: C++
 */
 // NAME                 :   David Shen
 // GROUP                :
-// LAST MODIFIED        :   20 March 2022
+// LAST MODIFIED        :   13 March 2022
 // PROBLEM ID           :   sort3
 // PROBLEM DESCRIPTION  :   Determine how many swaps are required to sort array
-//                          Logic
+//                          Greedy?
 // SOURCES              :   USACO Website
 // PEOPLE WHO HELPED ME :
 // PEOPLE I HELPED      :

@@ -1,3 +1,3 @@
-# CompetitiveProgSols
+# Competitive Programming Solutions
 
-These are the USACO Training solutions I have written up to this point.
+These are some of the solutions I have written up to this point.
