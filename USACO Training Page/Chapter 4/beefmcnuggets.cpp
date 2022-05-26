@@ -17,7 +17,7 @@ TASK: nuggets
 #include <numeric>
 #include <vector>
 
-bool reachable[587265];
+bool reachable[65025];
 
 int main()
 {
@@ -50,7 +50,7 @@ int main()
     int maxCannotReach = 0;
     reachable[0] = true;
 
-    for (int i = 0; i <= 587264; i++)
+    for (int i = 0; i <= 65024; i++)
     {
         if (reachable[i])
         {
