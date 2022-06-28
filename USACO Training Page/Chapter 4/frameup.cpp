@@ -26,7 +26,7 @@ int firstX['Z' + 1];
 int lastY['Z' + 1];
 int firstY['Z' + 1];
 
-bool isValidAt(std::string s)
+bool isValidAt(std::string& s)
 {
     int index = s.size() - 1;
     if (s.empty() || below[s[index]].size() > index)
