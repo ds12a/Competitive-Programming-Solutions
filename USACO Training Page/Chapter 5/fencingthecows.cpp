@@ -23,11 +23,13 @@ double getCos(const std::pair<double, double> &a, const std::pair<double, double
     return (a.first * b.first + a.second * b.second) / (std::hypot(a.first, a.second) * std::hypot(b.first, b.second));
 }
 
+// Returns vector represented by two points
 std::pair<double, double> makeVector(const std::pair<double, double> &p1, const std::pair<double, double> &p2)
 {
     return {p2.first - p1.first, p2.second - p1.second};
 }
 
+// Returns vector perpendicular to given vector
 std::pair<double, double> perpendicular(const std::pair<double, double> &v)
 {
     return {-v.second, v.first};
