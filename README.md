@@ -2,4 +2,4 @@
 
 These are some of the solutions I have written up to this point.
 
-**USACO Training Pages Total: $73$**
+**USACO Training Pages Total: $74$**
